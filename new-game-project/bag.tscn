@@ -1,24 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxx3dkut84qxa"]
+[gd_scene load_steps=9 format=3 uid="uid://bxx3dkut84qxa"]
 
 [ext_resource type="Script" path="res://sprite_2d.gd" id="1_12q1s"]
-[ext_resource type="Script" path="res://animation_player.gd" id="2_qa2ci"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hut5y"]
-
-[sub_resource type="Animation" id="Animation_ashd1"]
-resource_name = "enter"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1.14869),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(500, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_pme7w"]
 length = 0.001
@@ -33,22 +17,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_rredy"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(500, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_we3bd"]
@@ -81,6 +49,37 @@ tracks/0/keys = {
 "values": [Vector2(500, 0), Vector2(500, -500)]
 }
 
+[sub_resource type="Animation" id="Animation_ashd1"]
+resource_name = "enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1.14869),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(500, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rredy"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(500, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gatb0"]
 _data = {
 "RESET": SubResource("Animation_pme7w"),
@@ -91,9 +90,9 @@ _data = {
 }
 
 [node name="Bag" type="Node2D"]
+script = ExtResource("1_12q1s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-script = ExtResource("1_12q1s")
 
 [node name="TextureRect" type="TextureRect" parent="Sprite2D"]
 offset_right = 40.0
@@ -106,6 +105,5 @@ root_node = NodePath("../TextureRect")
 libraries = {
 "": SubResource("AnimationLibrary_gatb0")
 }
-script = ExtResource("2_qa2ci")
 
-[connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="Sprite2D" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
