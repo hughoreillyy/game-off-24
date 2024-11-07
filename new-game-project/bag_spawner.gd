@@ -7,14 +7,14 @@ var current_bag: Node2D = null
 func _ready() -> void:
 	spawn_bag()
 
-#spawn 1 bag every time you press a button
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("next"):
-		spawn_bag()  
+##spawn 1 bag every time you press a button
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("next"):
+		#spawn_bag()  
 
 func spawn_bag() -> void:
 	var bag = BagScene.instantiate()
-	bag.position = Vector2(100, 200) 
+	bag.position = Vector2(30, 100) 
 	add_child(bag)
 	print("spawned 1 bag") 
 	current_bag = bag
