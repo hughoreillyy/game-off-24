@@ -30,26 +30,26 @@ func _ready() -> void:
 	preload_images("res://Greybox/Items/Innocent/")
 
 	spawn_multiple_items(item_number)
-
-#image preload innocent items
+ 
+#image preload
 func preload_images(folder_path: String) -> void:
-	var dir = DirAccess.open(folder_path)  
-	if dir != null:  
-		dir.list_dir_begin() 
-		var file_name = dir.get_next()
-		while file_name != "":  
-			if file_name.ends_with(".png"): 
-				var sprite = ResourceLoader.load(folder_path + "/" + file_name)
-				if sprite:
-					item_sprites.append(sprite)  
-					#print("Preloaded:", file_name)  
-			file_name = dir.get_next()
-		
-		dir.list_dir_end()
+	var file_list = DirAccess.get_files_at(folder_path)  # Gets list of files in folder
 
-		#print("Preload successful")
-	#else:
-		#print("Failed to open directory:", folder_path)
+	for file_name in file_list:
+		var extension := file_name.get_extension()
+
+		# Skip files with certain extensions (like .import or .remap)
+		if extension == "import" or extension == "remap":
+			file_name = file_name.get_basename()
+			extension = file_name.get_extension()
+
+		# Only load PNG files
+		if extension == "png":
+			var sprite: Texture2D = load(folder_path.path_join(file_name))
+			if sprite:
+				item_sprites.append(sprite)  # Add the loaded image to the list
+				# print("Preloaded:", file_name)
+		print("Preload successful")
 
 # item spawning within the bag
 func spawn_multiple_items(item_count: int) -> void:
