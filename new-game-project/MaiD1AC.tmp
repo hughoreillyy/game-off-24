@@ -13,6 +13,7 @@ script = ExtResource("2_m308h")
 offset_top = -37.0
 offset_right = 176.0
 offset_bottom = 18.0
+text = "Pay: XXX€"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = 3

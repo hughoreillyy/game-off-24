@@ -49,7 +49,7 @@ func preload_images(folder_path: String) -> void:
 			if sprite:
 				item_sprites.append(sprite)  # Add the loaded image to the list
 				# print("Preloaded:", file_name)
-		print("Preload successful")
+		#print("Preload successful")
 
 # item spawning within the bag
 func spawn_multiple_items(item_count: int) -> void:
@@ -109,19 +109,9 @@ func move() -> void:
 
 
 func consequence():
-	if contraband_present and allowed == false:
+	if contraband_present != allowed:
 		label.append_text("Correct verdict")
 		label.modulate = Color(0, 1, 0) 
-		
-	if contraband_present and allowed == true:
+	else:
 		label.append_text("Incorrect verdict")
-		label.modulate = Color(1, 0, 0)  
-		
-	if contraband_present == false and allowed:
-		label.append_text("Correct verdict")
-		label.modulate = Color(0, 1, 0) 
-
-	if contraband_present == false and allowed == false:
-		label.append_text("Incorrect verdict")
-		label.modulate = Color(1, 0, 0)  
-		
+		label.modulate = Color(1, 0, 0) 
