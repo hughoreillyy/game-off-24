@@ -1,7 +1,72 @@
-[gd_scene load_steps=3 format=3 uid="uid://oltky5ugu8xo"]
+[gd_scene load_steps=15 format=3 uid="uid://oltky5ugu8xo"]
 
-[ext_resource type="Texture2D" uid="uid://bv1w0jhmgo4q" path="res://Greybox/Temp_Console.png" id="1_4gpdf"]
 [ext_resource type="Script" path="res://bag_spawner.gd" id="2_m308h"]
+[ext_resource type="Texture2D" uid="uid://dfxli63meg0sw" path="res://Art/Screen_Anim.png" id="2_omrxl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jma4d"]
+atlas = ExtResource("2_omrxl")
+region = Rect2(120, 0, 120, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr3v4"]
+atlas = ExtResource("2_omrxl")
+region = Rect2(240, 0, 120, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxiht"]
+atlas = ExtResource("2_omrxl")
+region = Rect2(0, 0, 120, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2ahs"]
+atlas = ExtResource("2_omrxl")
+region = Rect2(480, 0, 120, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f75ib"]
+atlas = ExtResource("2_omrxl")
+region = Rect2(600, 0, 120, 66)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdguh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jma4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr3v4")
+}],
+"loop": false,
+"name": &"guilty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxiht")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2ahs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f75ib")
+}],
+"loop": false,
+"name": &"innocent",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hxh0s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eepkg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kiajh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fg6yj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ptye"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ccsw"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -10,26 +75,21 @@ position = Vector2(8, 41)
 script = ExtResource("2_m308h")
 
 [node name="Wage_Text" type="Label" parent="BagSpawner"]
-offset_top = -37.0
-offset_right = 176.0
-offset_bottom = 18.0
+z_index = 10
+offset_left = 514.0
+offset_top = -27.0
+offset_right = 747.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 46
+text = "wage: xxx"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 263.0
-offset_top = -79.0
-offset_right = 959.0
-offset_bottom = 661.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_4gpdf")
-expand_mode = 1
-stretch_mode = 4
+[node name="Console" type="AnimatedSprite2D" parent="BagSpawner"]
+z_index = 1
+position = Vector2(633.909, 309)
+scale = Vector2(10.6667, 10.6667)
+sprite_frames = SubResource("SpriteFrames_kdguh")
+animation = &"idle"
+metadata/_edit_use_anchors_ = true
 
 [node name="Button_Guilty" type="Button" parent="."]
 z_index = 3
@@ -38,14 +98,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 428.0
-offset_top = 440.0
-offset_right = 626.0
-offset_bottom = 564.0
+offset_left = 325.0
+offset_top = 573.0
+offset_right = 575.0
+offset_bottom = 697.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hxh0s")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_eepkg")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiajh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fg6yj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3ptye")
+flat = true
 
 [node name="Button_Innocent" type="Button" parent="."]
 z_index = 3
@@ -54,16 +120,93 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 682.0
-offset_top = 445.0
-offset_right = 880.0
-offset_bottom = 569.0
+offset_left = 763.0
+offset_top = 574.0
+offset_right = 1010.0
+offset_bottom = 698.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7ccsw")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_eepkg")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kiajh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fg6yj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3ptye")
+flat = true
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
+[node name="GameOver" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+offset_right = 1282.0
+offset_bottom = 723.0
+color = Color(0.203922, 0.203922, 0.203922, 0.819608)
+
+[node name="Button" type="Button" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -66.0
+offset_right = 211.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOver/ColorRect/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="Queue" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="Queue"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 41.0
+offset_top = -329.0
+offset_right = 190.0
+offset_bottom = 237.0
+grow_vertical = 2
+fill_mode = 3
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="Queue/ProgressBar"]
+
+[node name="Label" type="Label" parent="Queue/ProgressBar"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 61.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 40
+text = "Queue
+"
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="pressed" from="Button_Guilty" to="BagSpawner" method="_on_button_guilty_pressed"]
 [connection signal="pressed" from="Button_Innocent" to="BagSpawner" method="_on_button_innocent_pressed"]
+[connection signal="pressed" from="GameOver/ColorRect/Button" to="BagSpawner" method="_on_button_pressed"]
+[connection signal="timeout" from="Queue/ProgressBar/Timer" to="BagSpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="BagSpawner" method="_on_game_timer_timeout"]
