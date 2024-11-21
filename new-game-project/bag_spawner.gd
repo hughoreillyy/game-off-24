@@ -7,9 +7,8 @@ extends Node2D
 @onready var timer: Timer = $"../Queue/ProgressBar/Timer"
 @onready var game_timer: Timer = $"../GameTimer"
 @onready var console: AnimatedSprite2D = $Console
-@onready var sfx_guilty: AudioStreamPlayer = $"../SFX_Guilty"
-@onready var sfx_innocent: AudioStreamPlayer = $"../SFX_Innocent"
-@onready var flash: ColorRect = $Flash
+@onready var sfx_guilty: AudioStreamPlayer = $"../AudioManager/SFX_Guilty"
+@onready var sfx_innocent: AudioStreamPlayer = $"../AudioManager/SFX_Innocent"
 
 @export var increment_value: int = 10
 @export var interpolation_speed: float = 5.0
@@ -63,18 +62,26 @@ func calculate_pay() -> void:
 		pay += 10
 		target_value -= 5
 		wage_text.modulate = Color(0, 1, 0)
+		sfx_innocent.play()
+		
 	if current_bag.allowed == true and current_bag.contraband_present == true:
 		pay -= 20
 		target_value += 10
 		wage_text.modulate = Color(1, 0, 0)
+		sfx_guilty.play()
+		
 	if current_bag.allowed == false and current_bag.contraband_present == true:
 		pay += 30
 		target_value -= 5
 		wage_text.modulate = Color(0, 1, 0)
+		sfx_innocent.play()
+		
 	if current_bag.allowed == false and current_bag.contraband_present == false:
 		pay -= 50
 		target_value += 10
 		wage_text.modulate = Color(1, 0, 0)
+		sfx_guilty.play()
+		
 
 	wage_text.text = "Wages: $%s" % pay
 	

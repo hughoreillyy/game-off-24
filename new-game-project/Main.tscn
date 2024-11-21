@@ -1,7 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://oltky5ugu8xo"]
+[gd_scene load_steps=18 format=3 uid="uid://oltky5ugu8xo"]
 
 [ext_resource type="Script" path="res://bag_spawner.gd" id="2_m308h"]
 [ext_resource type="Texture2D" uid="uid://dfxli63meg0sw" path="res://Art/Screen_Anim.png" id="2_omrxl"]
+[ext_resource type="AudioStream" uid="uid://dy1aympf4k8h" path="res://SFX/Console_Guilty.wav" id="3_6adt5"]
+[ext_resource type="AudioStream" uid="uid://c1lmq7wohlr5k" path="res://SFX/Console_Innocent.wav" id="4_lg3v8"]
+[ext_resource type="Texture2D" uid="uid://c232nxst18gpm" path="res://Art/Untitled - 1.png" id="5_b7uc8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jma4d"]
 atlas = ExtResource("2_omrxl")
@@ -204,6 +207,21 @@ text = "Queue
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="AudioManager" type="Node2D" parent="."]
+
+[node name="SFX_Guilty" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("3_6adt5")
+
+[node name="SFX_Innocent" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("4_lg3v8")
+
+[node name="Untitled-1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+z_index = -11
+position = Vector2(630, 333)
+scale = Vector2(10.76, 10.76)
+texture = ExtResource("5_b7uc8")
 
 [connection signal="pressed" from="Button_Guilty" to="BagSpawner" method="_on_button_guilty_pressed"]
 [connection signal="pressed" from="Button_Innocent" to="BagSpawner" method="_on_button_innocent_pressed"]

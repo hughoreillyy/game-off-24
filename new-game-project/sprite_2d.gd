@@ -14,13 +14,12 @@ var random_item: Texture
 func _ready() -> void:
 	contraband_present = bool(randf() < 0.4)  
 	move()
-	var item_number = randf_range(4, 20)
+	var item_number = randf_range(4, 10)
 	if contraband_present == true:
-		preload_images("res://Greybox/Items/Guilty/", guilty_sprites)
+		preload_images("res://Art/Items_Guilty/", guilty_sprites)
 		print("contraband present")
 
-	preload_images("res://Greybox/Items/Innocent/", innocent_sprites)
-	
+	preload_images("res://Art/Items_Innocent/", innocent_sprites)
 	spawn_multiple_items(item_number)
  
 # Image preloading for guilty and innocent items
