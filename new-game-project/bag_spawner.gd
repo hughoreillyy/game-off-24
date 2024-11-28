@@ -9,11 +9,10 @@ extends Node2D
 @onready var console: AnimatedSprite2D = $Console
 @onready var sfx_guilty: AudioStreamPlayer = $"../AudioManager/SFX_Guilty"
 @onready var sfx_innocent: AudioStreamPlayer = $"../AudioManager/SFX_Innocent"
-
 @export var increment_value: int = 10
 @export var interpolation_speed: float = 5.0
-var target_value: float = 0.0
 
+var target_value: float = 0.0
 var current_bag: Node2D = null
 var pay: int = 0
 
